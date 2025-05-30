@@ -1,4 +1,4 @@
-# 🎬 Welcome to MediaTube!
+🎬 Welcome to MediaTube!
 
 **Experience a seamless, console-based media platform**—powered by modern C++ practices, robust design patterns, and playful ASCII-video magic!
 
