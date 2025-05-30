@@ -152,4 +152,4 @@ media_tube/
 
 ---
 
-🔥 ***Immerse yourself in MediaTube’s modular design and rich console experience!***\* 🚀\*
+🔥 ***Immerse yourself in MediaTube’s modular design and rich console experience!*** 🚀
