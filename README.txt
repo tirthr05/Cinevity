@@ -1,6 +1,6 @@
 🎬 Welcome to MediaTube!
 
-**Experience a seamless, console-based media platform**—powered by modern C++ practices, robust design patterns, and playful ASCII-video magic!
+**Experience a seamless, console-based media platform** — powered by modern C++ practices, robust design patterns, and playful ASCII-video magic!
 
 ---
 
@@ -8,11 +8,11 @@
 
 Before you begin, ensure you have:
 
-* **C++17–compliant Compiler**: `g++ (v7.0+)` or `clang++`
+* **C++17–compliant Compiler** (`g++ (v7.0+)` or `clang++`)
 
   * Leverage **structured bindings**, **`std::optional`**, **`if constexpr`**, and **template argument deduction**
 * **GNU Make**: Automates builds and test runs via a concise Makefile
-* **Valgrind**: (Optional) Memory profiling and leak detection
+* **Valgrind** (optional): Memory profiling and leak detection
 * **POSIX–compliant Shell** or Windows Command Prompt with proper path settings
 
 ---
@@ -27,66 +27,65 @@ Before you begin, ensure you have:
 
 ### 2. Object-Oriented Architecture
 
-* **Abstract Interfaces**:
+* **Abstract Interfaces**
 
   * `Search` interface defines a pure virtual `execute()` method
-  * `MediaPlayer` interface exposing `play()` for `AudioPlayer` and `VideoPlayer`
-* **Polymorphism**:
+  * `MediaPlayer` interface exposes `play()` for `AudioPlayer` and `VideoPlayer`
+* **Polymorphism**
 
   * Runtime binding allows swapping players and search strategies without code changes
-* **Encapsulation & Separation**:
+* **Encapsulation & Separation**
 
-  * `View` handles I/O, `Control` delegates to `MediaTube`, and domain logic resides within `Media`, `Channel`, and `Factory` classes
+  * `View` handles I/O, `Control` delegates to `MediaTube`, and domain logic lives in `Media`, `Channel`, and `MediaFactory`
 
 ### 3. Creational & Behavioral Patterns
 
-* **Factory Pattern**:
+* **Factory Pattern**
 
   * `MediaFactory` centralizes instantiation of **Media**, **Channel**, and **Search** objects
-  * Simplifies extending with new media types or strategies—adhere to `Factory` contract
-* **Strategy Pattern**:
+  * Simplifies extending with new media types or strategies—just implement the Factory contract
+* **Strategy Pattern**
 
-  * Define interchangeable search algorithms (`O_Search`, `C_Search`, `OorC_Search`)
-  * Users dynamically select search type at runtime to filter media by **owner**, **category**, or a **combination**
+  * Interchangeable search algorithms (`O_Search`, `C_Search`, `OorC_Search`)
+  * Users select search type at runtime to filter media by **owner**, **category**, or **both**
 
 ### 4. Templates & Custom Containers
 
-* **Array**:
+* **Array**
 
-  * Custom templated dynamic array with `push_back()`, `size()`, `operator[]`
-  * Offers a lightweight alternative to `std::vector` for educational clarity
-* **Type Safety**:
+  * Templated dynamic array with `push_back()`, `size()`, and `operator[]`
+  * Lightweight alternative to `std::vector` for clarity
+* **Type Safety**
 
-  * Compile-time checks ensure misuse is flagged early—no unsafe casts
+  * Compile-time checks catch misuse early—no unsafe casts
 
 ### 5. Multimedia Playback
 
-* **AudioPlayer**:
+* **AudioPlayer**
 
   * Plays `.wav` files via system calls (e.g., `aplay` on Linux)
-  * Handles buffering and error recovery for broken streams
-* **VideoPlayer**:
+  * Handles buffering and error recovery
+* **VideoPlayer**
 
-  * Incorporates ASCII-frame playback from `.txt` files, synchronized with audio
+  * ASCII-frame playback from `.txt` files, synchronized with audio
   * Demonstrates multithreading basics for concurrent playback
 
 ### 6. Build Automation & Testing
 
-* **Makefile Targets**:
+* **Makefile Targets**
 
-  * `make build` — Compiles all sources with `-std=c++17 -Wall -Wextra`
-  * `make test` — Builds and runs `TestControl` suite, outputs pass/fail counts
-  * `make clean` — Removes binaries and temporary files
-* **Test Harness**:
+  * `make build` — Compiles sources with `-std=c++17 -Wall -Wextra`
+  * `make test` — Builds and runs tests (`TestControl`), reporting pass/fail counts
+  * `make clean` — Cleans binaries and temp files
+* **Test Harness**
 
-  * `TestControl` validates key classes and functions with hardcoded scenarios
-  * Ensures robust behavior before manual exploration
+  * `TestControl` suite validates key classes/functions with sample scenarios
 
 ---
 
 ## 📂 Project Layout at a Glance
 
-```
+```plain
 media_tube/
 ├── src/
 │   ├── main.cc             # Bootstrap & command loop
@@ -98,45 +97,46 @@ media_tube/
 │   ├── OorC_Search.cpp     # Combined filter logic
 │   ├── Array.h             # Templated dynamic array
 │   ├── MediaPlayer.h       # Playback interface
-│   ├── AudioPlayer.cpp     # Audio via system calls
+│   ├── AudioPlayer.cpp     # Audio implementation
 │   ├── VideoPlayer.cpp     # ASCII-video + audio sync
-│   ├── MediaFactory.cpp    # Centralized creation logic
-│   ├── MediaTube.cpp       # Core orchestration & data storage
-│   ├── View.cpp            # User prompts & formatted output
-│   ├── Control.cpp         # Coordinates View & MediaTube
+│   ├── MediaFactory.cpp    # Factory logic
+│   ├── MediaTube.cpp       # Core orchestration & storage
+│   ├── View.cpp            # User interface
+│   ├── Control.cpp         # Controller logic
 │   └── TestControl.cpp     # Unit & integration tests
 ├── media/                  # Sample `.wav` & ASCII frames
 ├── Makefile                # Build/test/clean targets
-└── README.md               # This in-depth guide!
+└── README.md               # This guide!
 ```
 
 ---
 
 ## 🚀 Quickstart Guide
 
-1. **Get the code**:
+1. **Clone the repo**:
 
    ```bash
-   git clone <repo_url> && cd media_tube
+   git clone <repo_url>
+   cd media_tube
    ```
 2. **Build**:
 
    ```bash
    make build
    ```
-3. **Play**:
+3. **Run**:
 
    ```bash
    ./a4
    ```
 
    • Add channels, upload media, search, and play!
-4. **Verify**:
+4. **Test**:
 
    ```bash
    make test
    ```
-5. **Cleanup**:
+5. **Clean**:
 
    ```bash
    make clean
@@ -146,10 +146,10 @@ media_tube/
 
 ## 🤝 Tips & Tricks
 
-* **Add New Media**: Place your `.wav` and ASCII `.txt` in `media/`, update `mediaList.txt`, and restart.
-* **Extend Searches**: Implement a new class inheriting `Search`, register it in `MediaFactory`.
-* **Parallel Playback**: Tweak sleep intervals in `VideoPlayer` for frame-rate control.
+* **Add New Media**: Copy your `.wav` & ASCII `.txt` into `media/`, update `mediaList.txt`, then restart.
+* **Extend Searches**: Create a new class inheriting `Search` and register it in `MediaFactory`.
+* **Adjust Playback**: Tweak sleep timings in `VideoPlayer` for custom frame rates.
 
 ---
 
-🔥 ***Immerse yourself in MediaTube’s modular design and rich console experience!*** 🚀
+**Immerse yourself in MediaTube’s modular design and rich console experience!**
